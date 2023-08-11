@@ -4,8 +4,8 @@ import Cards from "../card/Cards";
 import axios from "axios";
 import "./Main.scss";
 import { useSearchParams } from "react-router-dom";
-import router from "./services/router";
-import { AuthProvider } from "./context/AuthContext"
+// import router from "./services/router";
+// import { AuthProvider } from "./context/AuthContext"
 
 export default function Main() {
   const [info, setInfo] = useState([]);
