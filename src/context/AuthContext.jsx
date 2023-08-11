@@ -1,100 +1,38 @@
-import React, { useEffect, useState } from "react";
-import Categories from "../categories/Categories";
-import Cards from "../card/Cards";
-import axios from "axios";
-import "./Main.scss";
-import { useSearchParams } from "react-router-dom";
+import { createContext, useState } from "react";
 
-export default function Main() {
-  const [info, setInfo] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [searchParams] = useSearchParams();
-  let minPrice = 0;
-  let maxPrice = Number.MAX_SAFE_INTEGER;
+const initialContext = {
+  access_token: null,
+  refresh_token: null,
+};
 
-  useEffect(() => {
-    setLoading(true);
+function getAuthFromStorage() {
+  try {
+    const auth = JSON.parse(sessionStorage.getItem("auth"));
 
-    async function fetchData() {
-      try {
-        const res = await axios.get("https://api.escuelajs.co/api/v1/products");
-        setInfo(res?.data);
-        return res;
-      } catch (error) {
-        setError(error?.response?.data?.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-  const filteredProducts = () => {
-    let filtered = info;
-    if (searchParams.get("title")) {
-      filtered = info.filter((item) => {
-        return item.title
-          .toLowerCase()
-          .includes(searchParams.get("title").toLowerCase());
-      });
-    }
+    return auth || initialContext;
+  } catch (error) {
+    return initialContext;
+  }
+}
 
-    if (searchParams.get("price_min")) {
-      const priceMin = parseInt(searchParams.get("price_min"));
-      if (Number.isFinite(priceMin)) {
-        minPrice = priceMin;
-      }
-    }
+export const AuthContext = createContext(getAuthFromStorage());
 
-    filtered = filtered.filter((item) => {
-      return item.price >= minPrice;
-    });
+export function AuthProvider({ children }) {
+  const [auth, setAuth] = useState(getAuthFromStorage());
 
-    if (searchParams.get("price_max")) {
-      const priceMax = parseInt(searchParams.get("price_max"));
-      if (Number.isFinite(priceMax)) {
-        maxPrice = priceMax;
-      }
-    }
+  function logOut() {
+    setAuth(initialContext);
+    sessionStorage.removeItem("auth");
+  }
 
-    filtered = filtered.filter((item) => {
-      return item.price <= maxPrice;
-    });
-
-    filtered = filtered.filter((item) => {
-      return item.price >= minPrice && item.price <= maxPrice;
-    });
-
-    return (
-      <>
-        {filtered.map((i) => (
-          <Cards
-            key={i?.id}
-            title={i?.title}
-            price={i?.price}
-            img1={i?.images[0]}
-            img2={i?.images[1]}
-            img3={i?.images[2]}
-            id={i?.id}
-          />
-        ))}
-      </>
-    );
-  };
+  function logIn(data) {
+    setAuth(data);
+    sessionStorage.setItem("auth", JSON.stringify(data));
+  }
 
   return (
-    <>
-      <main>
-        <div className="container">
-          <Categories />
-          {error && <pre style={{ marginBottom: 10 }}>{error.toString()}</pre>}
-          {loading ? (
-            <div className="loader"></div>
-          ) : (
-            <div className="cards">{info && filteredProducts()}</div>
-          )}
-        </div>
-      </main>
-    </>
+    <AuthContext.Provider value={{ auth, logOut, logIn }}>
+      {children}
+    </AuthContext.Provider>
   );
 }

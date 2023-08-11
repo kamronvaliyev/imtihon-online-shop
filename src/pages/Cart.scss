@@ -1,0 +1,202 @@
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  &__title {
+    text-align: center;
+    font-size: 50px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  &__infos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  &__counter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__line {
+    width: 100%;
+    height: 1px;
+    background-color: #aaa;
+    display: inline-block;
+  }
+  &__btn {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: #4299e1;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-bottom: 4px solid #2b6cb0;
+    font-weight: 700;
+    color: white;
+    line-height: 26px;
+    position: absolute;
+    left: 45%;
+    bottom: 40%;
+  }
+  &__total {
+    display: flex;
+    margin: 0 auto;
+    justify-content: right;
+    gap: 150px;
+    margin-top: 10px;
+  }
+  &__btn--buy {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 14px 24px 16px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 200ms, background 200ms;
+  }
+}
+
+input,
+textarea {
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+}
+
+input[type="button"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input-group {
+  clear: both;
+  margin: 15px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.input-group input[type="button"] {
+  background-color: #eeeeee;
+  min-width: 38px;
+  width: auto;
+  transition: all 300ms ease;
+}
+
+.input-group .button-minus {
+  font-weight: 300;
+  width: 38px;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: absolute;
+  z-index: 100;
+  top: -12px;
+  left: 105px;
+  font-size: 50px;
+}
+.input-group .button-plus {
+  padding: 0;
+  width: 38px;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: absolute;
+  z-index: 100;
+  margin-left: 6px;
+  font-size: 25px;
+  margin-top: -5px;
+}
+
+.input-group .quantity-field {
+  position: relative;
+  height: 38px;
+  left: -6px;
+  text-align: center;
+  width: 150px;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 0 5px;
+  resize: vertical;
+}
+
+.button-plus {
+  left: -13px;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 1200px;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.button-cancel {
+  display: inline-block;
+  outline: 0;
+  appearance: none;
+  padding: 0px 12px;
+  border: 0px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(9, 128, 76);
+  box-shadow: rgb(19 170 82 / 40%) 0px 2px 3px;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 400;
+  height: 36px;
+  transition: all 150ms ease-in-out 0s;
+  width: 100%;
+  font-size: 20px;
+}
+
+.button-cancel:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(17, 97, 73);
+  box-shadow: rgb(19 170 82 / 40%) 0px 2px 3px, rgb(195 231 202) 0px 0px 0px 3px;
+}

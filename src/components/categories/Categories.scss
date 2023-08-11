@@ -1,0 +1,72 @@
+.categories {
+  margin-bottom: 50px;
+  &__heading {
+    text-align: center;
+    font-size: 40px;
+    margin: 40px 0;
+  }
+  &__filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  &__search {
+    width: 550px;
+    padding: 20px 10px;
+    outline: 5px solid transparent black;
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 10px;
+  }
+  &__price--box {
+    width: 49%;
+    border: 1px solid black;
+    padding: 17px 20px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 7px;
+  }
+  &__price--search {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__price--boxes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__input {
+    border: 1px solid black;
+    outline: none;
+    padding: 10px;
+  }
+  &__pages {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__pages--btn {
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 56px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 7px;
+    background-color: #0070f3;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+  &__pages--btn:hover {
+    background: rgba(0, 118, 255, 0.9);
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+  }
+}
